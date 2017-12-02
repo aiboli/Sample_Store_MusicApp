@@ -1,0 +1,101 @@
+
+{% extends 'music/base.html' %}
+{% block title %}Album{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="{{ album.album_logo.url }}" width="150px" height="150px">
+                <div class="caption" style="text-align: center">
+                    <h3 id="currentSong"></h3>
+                    <p>{{ album.album_title}} --- {{album.artist}}</p>
+                    {% csrf_token %}
+                    <audio id="player">
+                        <source id="player-src" src="" type="audio/mp3"/>
+                    </audio>
+                    <div class="row">
+                        <div class="container col-md-12 col-sm-12">
+                            <div class="range-slider col-md-12 col-sm-12">
+                                <input id="slider" class="range-slider__range" type="range" value="0" min="0" max="1000">
+                                <!--<span class="range-slider__value">0</span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" id="player-play" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button>
+                        <button type="button" id="player-stop" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-stop"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-9">
+            <div class="thumbnail">
+                <div class="panel panel-default">
+                    <div class="panel-heading orange clearfix">
+                        <h3 class="panel-title pull-left">Songs in {{album.album_title}}</h3>
+                        <div class="btn-group pull-right">
+                            <a href="{% url 'music:song-add' album.id %}" class="btn btn-primary i-orange" role="button">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                Songs
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="list-group">
+                                    {% for song in album.song_set.all %}
+                                    <a class="list-group-item clearfix">
+                                        {{song.song_title}}
+                                        <span class="pull-right">
+                                            <span class="btn btn-xs btn-default" onclick="setURL('{{song.song_file}}','{{song.song_title}}')">
+                                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                                            </span>
+                                        </span>
+                                        <span class="pull-right">
+                                            <span class="btn btn-xs btn-default">
+                                                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                                            </span>
+                                        </span>
+                                        <div class="pull-right">
+                                            <form action="{% url 'music:song-delete' song.album.id song.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="song_album_id" value="{{song.album.id}}"/>
+                                                <input type="hidden" name="song_id" value="{{song.id}}"/>
+                                                <button type = "submit" class="btn btn-default btn-xs">
+                                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                </button>
+                                            </form>
+                                            <!--<span class="btn btn-xs btn-default" onclick="">-->
+                                                <!--<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>-->
+                                            <!--</span>-->
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<img src="{{ album.album_logo.url }}" height="150px" width="150px">-->
+
+    <!--<h1>{{ album.album_title}}</h1>-->
+    <!--<h3>{{ album.artist }}</h3>-->
+    <!--<ul>-->
+        <!--{% for song in album.song_set.all%}-->
+            <!--<li>{{song.song_title}} - {{song.file_type}}</li>-->
+        <!--{% endfor %}-->
+    <!--</ul>-->
+
+    {% if error_message %}
+        <p><strong>{{ error_message}}</strong></p>
+    {% endif %}
+    <!--{% csrf_token %}-->
+    <!--{% for song in album.song_set.all %}-->
+    <!--{{song.song_title}}-->
+    <!--<br>-->
+    <!--{% endfor %}-->
+{% endblock %}

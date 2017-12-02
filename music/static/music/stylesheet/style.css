@@ -1,0 +1,74 @@
+
+body{
+    background: url("../image/bg.jpg");
+}
+
+.navbar-custom{
+    background-color: #ff5500;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+    font-family: 'Sriracha', cursive;
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+    font-family: 'Sriracha', cursive;
+}
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #f32123;
+}
+
+/* for dropdown only - change the color of droodown */
+.navbar-custom .dropdown-menu {
+    background-color: #ff5500;
+}
+.navbar-custom .dropdown-item {
+    color: #ffffff;
+}
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
+    color: #333333;
+    background-color: rgba(255,255,255,.5);
+}
+/* change the color of active or hovered links */
+.white, .white a {
+  color: rgba(255,255,255,.5);
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.panel-default >.orange{
+    background-color:#ff5500 !important;
+    color: #fff;
+    font-family: 'Sriracha', cursive;
+}
+
+.i-orange {
+    background-color:#ff5500 !important;
+    color:#fff !important;
+    border-color:#fff !important;
+}
+
+.panel-heading h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 80%;
+    padding-top: 1%;
+}
+

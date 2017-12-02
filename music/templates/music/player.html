@@ -1,0 +1,31 @@
+{% extends 'music/detail.html' %}
+{% load staticfiles %}
+{% block player %}
+<script src="{% static 'music/javascript/player.js' %}"></script>
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="{% static 'music/image/ew.jpg' %}">
+            <div class="caption" style="text-align: center">
+                <h3>Song</h3>
+                <p>Artist -- Album</p>
+                <audio id="player">
+                    <source src="https://www.grandvincent-marion.fr/_codepen/kygo-stole-the-show.mp3" type="audio/mp3"/>
+                </audio>
+                <div class="row">
+                    <div class="container col-md-12 col-sm-12">
+                        <div class="range-slider col-md-12 col-sm-12">
+                            <input id="slider" class="range-slider__range" type="range" value="0" min="0" max="1000">
+                            <!--<span class="range-slider__value">0</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" id="player-play" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button>
+                    <button type="button" id="player-stop" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-stop"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

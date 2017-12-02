@@ -1,0 +1,7 @@
+{% extends 'music/base.html' %}
+{% block body %}
+<h1>congrats you uploaded a new song</h1>
+<script>
+    window.location.replace("/music/{{song.album.id}}/");
+</script>
+{% endblock %}
